@@ -55,7 +55,7 @@ ROOT_URLCONF = 'hack_72.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +70,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'hack_72.wsgi.application'
 
+ASGI_APPLICATION = 'hack_72.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+
+        # the chat messages will stored in the redis server 
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+               #localhost,port
+        },
+    },
+}
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -119,3 +133,14 @@ AUTH_USER_MODEL = 'accounts.User'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static')
+]
+STATIC_ROOT =os.path.join(BASE_DIR,'assets')
+#MEDIA  FILES 
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT =os.path.join(BASE_DIR,'media')

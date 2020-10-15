@@ -14,13 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-
+from .views import chat
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('chat/',include('chat.urls',namespace="chat")
+        path('<str:chat_id>',chat,name="chat_room" ),
 ]
-urlpatterns =urlpatterns +  static(settings.STATIC_URL,document_root=settings.STATIC_ROOT) 
-urlpatterns =urlpatterns +  static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+

@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
+from teacher.models import Course
 # Create your models here.
 from django.conf import settings 
 FEES = [1000*i for i in range(1,13)]
@@ -33,7 +34,7 @@ class Student(models.Model) :
     standard = models.IntegerField(default =1)
     is_fees_paid = models.BooleanField(default = False)
     date_of_joining = models.DateField(default =timezone.now)
-
+    courses = models.ManyToManyField(Course,related_name="student_courses")
 
     @property
     def fees(self) :
