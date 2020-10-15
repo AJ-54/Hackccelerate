@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'hack_72.urls'
+ROOT_URLCONF = 'hack72.urls'
 
 TEMPLATES = [
     {
@@ -68,9 +68,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'hack_72.wsgi.application'
+WSGI_APPLICATION = 'hack72.wsgi.application'
 
-ASGI_APPLICATION = 'hack_72.routing.application'
+ASGI_APPLICATION = 'hack72.routing.application'
 CHANNEL_LAYERS = {
     'default': {
 
