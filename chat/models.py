@@ -1,8 +1,8 @@
 from django.db import models
 from django.conf import settings
-from teacher.models import Course
+from courses.models import Course
 from django.dispatch import receiver
-
+from django.db.models.signals import post_save
 
 User = settings.AUTH_USER_MODEL
 # Create your models here.
@@ -21,8 +21,8 @@ class Message(models.Model) :
 
 class Chat(models.Model) :
     participants = models.ManyToManyField(User,related_name='chats')
-    messages = models.ManyToManyField(Messages,blank=True,related_name='chat')
-    course = models.OneToOneField(Course ,related_name = "general_chat",on_delete=model.CASCADE)
+    messages = models.ManyToManyField(Message,blank=True,related_name='chat')
+    course = models.OneToOneField(Course ,related_name = "general_chat",on_delete=models.CASCADE)
 
 
 
