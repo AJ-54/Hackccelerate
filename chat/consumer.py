@@ -16,10 +16,10 @@ class ChatConsumer(WebsocketConsumer):
 
     def fetch_messages(self,data):
         print('fetching')
-        messages=get_last_10_messages(data['chatId'])
+        messages=get_last_10_messages(int(self.room_name))
         context ={
             'command': 'messages',
-            'messages' : self.messages_to_json(messages,data['chatId'])
+            'messages' : self.messages_to_json(messages,self.room_name)
         }
         self.send_message(context)
       
@@ -38,7 +38,7 @@ class ChatConsumer(WebsocketConsumer):
         self.send_chat_message(context)
     
 
-"""    def online(self,data) :
+    """    def online(self,data) :
         person= User.objects.get(username=data['username']) 
         context ={
             'command':'online',
@@ -56,13 +56,13 @@ class ChatConsumer(WebsocketConsumer):
         user = User.objects.get(username =data["from"])
         
         # author_user=User.objects.filter(username=contact)[0]
-        message = Messages.objects.create(contact=user,content=data['message'])
+        message = Message.objects.create(user=user,content=data['message'])
        
         content={
             'command':'new_message',
-            'message':self.message_to_json(message,data['chatId'])
+            'message':self.message_to_json(message,self.room_name)
         }
-        current_chat = get_curent_chat(data['chatId'])
+        current_chat = get_curent_chat(self.room_name)
         current_chat.messages.add(message)
         current_chat.save()
          
@@ -82,7 +82,7 @@ class ChatConsumer(WebsocketConsumer):
     def message_to_json(self,message,id):
         return {
             'id':message.id,
-            'author':message.contact.user.username,
+            'author':message.user.username,
             'content':message.content,
             'timestamp':str(message.timestamp),
             'chatId':id
@@ -96,6 +96,7 @@ class ChatConsumer(WebsocketConsumer):
          }
 
     def connect(self):
+        print("connecting")
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chat_%s' % self.room_name
 

@@ -159,8 +159,8 @@
 					for(let i =0 ;i<data['messages'].length;i++){
 						createmessage(data['messages'][i])
 					}
-				}
-				var message =data['message'] ;
+				}else if (data['message']["command"]==="new_message"){
+				var message =data['message']['message'] ;
 				var author = message['author'] ;
 				var messagelisttag= document.createElement('li') ;
 				var imgTag = document.createElement('img') ;
@@ -173,19 +173,19 @@
 				imgTag.className="rounded-circle user_img_msg" ;
 				
 				divTag2.textContent = message['content'] ;
-				
+				console.log(message)
 				//divTag2.textContent=message['content'] ;
-				
+				console.log(author,username)
 				divTag1.className="img_cont_msg" ;
 				imgTag.src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" ;
-				if (author == username){
+				if (author === username){
 					divTag.className="d-flex justify-content-end mb-4" ;
 					divTag2.className="msg_cotainer_send" ;
 
 				}else{
 					divTag.className="d-flex justify-content-start mb-4" ;
 					divTag2.className="msg_cotainer" ;
-					console.log('why isn')
+					console.log('not author')
 				}
 				divTag.appendChild(divTag1) ;
 				divTag.appendChild(divTag2) ;
@@ -193,7 +193,7 @@
 				divTag2.appendChild(pTag) ;
 				
 				document.querySelector("#chat-log").appendChild(divTag) ;
-			};
+				}			};
 			
 			function createmessage(data){
 				var message =data ;
@@ -209,6 +209,7 @@
 				imgTag.className="rounded-circle user_img_msg" ;
 				
 				divTag2.textContent = message['content'] ;
+				console.log(message)
 				
 				//divTag2.textContent=message['content'] ;
 				
