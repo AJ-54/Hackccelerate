@@ -16,7 +16,7 @@ class Message(models.Model) :
     # read_by=models.ManyToManyField(Contact,related_name='messages_read')
 
     def __str__(self) :
-        return self.contact.user.username
+        return self.user.username
 
 
 class Chat(models.Model) :
@@ -40,5 +40,7 @@ class Chat(models.Model) :
 @receiver(post_save ,sender = Course)
 def create_chat(sender,instance,created,**kwargs) :
     if created :
-        Chat.objects.create(participants = instance.students.all(),course=instance) 
+        chat =Chat.objects.create(course=instance) 
+        chat.participants.set(instance.student_courses.all())
+        chat.save()
 
