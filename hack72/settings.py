@@ -26,7 +26,7 @@ SECRET_KEY = '=$z#p(r5okulew34y&aju1bw+&_#$)5xgyzh(5c7)6$0&qyay0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['learn-live.herokuapp.com']
 
 
 # Application definition
@@ -88,7 +88,13 @@ CHANNEL_LAYERS = {
     'default': {
 
         # the chat messages will stored in the redis server 
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],
+#                #localhost,port
+#         },
+          'BACKEND': 'channels.layers.InMemoryChannelLayer',
     },
 }
 # REDIS_HOST = 'localhost'
