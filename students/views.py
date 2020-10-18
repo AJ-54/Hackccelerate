@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
@@ -23,18 +24,26 @@ class StudentRegistrationView(CreateView):
         return result
 
 
-class StudentEnrollCourseView(LoginRequiredMixin, FormView):
-    course = None
-    form_class = CourseEnrollForm
+def enroll_course(request,pk) :
+    
+        course = Course.objects.get(pk=pk)
+        course.student_courses.add(request.user.student)
 
-    def form_valid(self, form):
-        self.course = form.cleaned_data['course']
-        self.course.students.add(self.request.user)
-        return super().form_valid(form)
+        return redirect('students:student_course_detail',
+                                pk=course.id)
+    
+    
 
-    def get_success_url(self):
-        return reverse_lazy('students:student_course_detail',
-                            args=[self.course.id])
+    
+
+
+class CourseListView(LoginRequiredMixin, ListView):
+    model = Course
+    template_name = 'students/course/all_courses.html'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.exclude(student_courses__in=[self.request.user.student])
 
 
 class StudentCourseListView(LoginRequiredMixin, ListView):
