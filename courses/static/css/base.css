@@ -35,13 +35,18 @@ h1 {
     width:600px;
 }
 
-.my-module h3 {
+.mod-res{
+     padding:10px 20px;
+}
+
+
+.my-module h3,.mod-res h3 {
     margin:20px 0 0;
     padding:0;
     width:100%;
 }
 
-.my-module p {
+.my-module p,.mod-res p {
     margin:10px 0 20px;
     width:100%;
     float:left;
@@ -74,7 +79,14 @@ h1 {
     margin:0;
     padding:0;
 }
-
+.contents-res{
+   
+    padding:10px;
+   
+    background:#333;
+    color: #fff;
+    font-family:'Roboto', sans-serif;
+}
 .my-contents {
     width:20%;
     padding:10px;
@@ -84,29 +96,29 @@ h1 {
     font-family:'Roboto', sans-serif;
 }
 
-.my-contents ul {
+.my-contents ul,.contents-res ul {
     list-style:none;
     margin:0;
     padding:0;
     width:100%;
 }
 
-.my-contents ul li {
+.my-contents ul li ,.contents-res ul li{
     margin:0 0 10px 0;
     padding:4px 10px 10px;
     overflow:auto;
     cursor:move;
 }
 
-.my-contents ul li.selected {
+.my-contents ul li.selected,.contents-res ul li.selected {
     background:#3f3f3f;
 }
 
-.my-contents ul li:hover {
+.my-contents ul li:hover,.contents-res ul li:hover {
     background:#3f3f3f;
 }
 
-.my-contents ul span {
+.my-contents ul span,.contents-res ul span{
     text-transform:uppercase;
     color:#bbb;
     font-size:14px;
@@ -118,7 +130,7 @@ h1 {
     text-decoration:none;
 }
 
-.my-contents ul a:hover {
+.my-contents ul a:hover, .contents-res ul a:hover{
     color:#4dcc43;
     cursor:move;
 }

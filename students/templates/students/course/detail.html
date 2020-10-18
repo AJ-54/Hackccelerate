@@ -9,7 +9,8 @@
   <h1>
     {{ module.title }}
   </h1>
-  <div class="my-contents">
+   <div class="grid grid-cols-8 gap-2">
+    <div class="contents-res md:col-span-2 sm:col-span-8">
     <h3>Modules</h3>
     <ul id="modules">
       {% for m in object.modules.all %}
@@ -27,17 +28,14 @@
       {% endfor %}
 
     </ul>
-        {% for a in announcements %}
-    <p>{{a.content}}</p>
-    <p> - {{ a.created }} </p>
-    {% endfor %}
+        
     {% comment %} <h3>
       <a href="{% url "chat:course_chat_room" object.id %}">
         Course chat room
       </a>
     </h3> {% endcomment %}
   </div>
-  <div class="my-module">
+  <div class="mod-res md:col-span-4 sm:col-span-8" >
     {% cache 600 module_contents module %}
       {% for content in module.contents.all %}
         {% with item=content.item %}
@@ -51,6 +49,19 @@
 
 
   </div>
+   <div class="md:col-span-2 sm:col-span-8  p-3 border-gray-400 bg-gray text-white" style="background-color:#333">
+
+    <h2 class="mb-3 text-1xl">Announcements</h2>
+    <hr>
+    {% for a in announcements %}
+    <div class="mb-2 mt-1">
+    <p>{{a.content}}</p>
+    <p class="mb-2"> - {{ a.created }} </p>
+    <hr>
+    </div>
+    {% endfor %}
+    </div>
+    </div>
 
   
 {% endblock %}

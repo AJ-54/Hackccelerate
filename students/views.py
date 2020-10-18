@@ -66,6 +66,6 @@ class StudentCourseDetailView(DetailView):
             # get first module
             context['module'] = course.modules.all()[0]
 
-        context['announcements'] = self.object.announcments.all()
+        context['announcements'] = self.object.announcements.all()
         
         return context

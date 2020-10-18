@@ -10,7 +10,8 @@
     <h1><a href="{% url "courses:manage_course_list" %}">
       Go Back</a> 
     </h1>
-    <div class="my-contents">
+    <div class="grid grid-cols-8">
+    <div class="contents-res md:col-span-2 sm:col-span-8">
       <h3>Modules for {{course.title}} </h3>
       <ul id="modules">
         {% for m in course.modules.all %}
@@ -32,7 +33,7 @@
       Edit modules</a></p>
       
     </div>
-    <div class="my-module">
+    <div class="mod-res md:col-span-4 sm:col-span-8" >
       <h2>Module {{ module.order|add:1 }}: {{ module.title }}</h2>
       <h3>Module contents:</h3>
 
@@ -53,10 +54,7 @@
         {% empty %}
           <p>This module has no contents yet.</p>
         {% endfor %}
-        {% for a in announcements %}
-    <p>{{a.content}}</p>
-    <p> - {{ a.created }} </p>
-    {% endfor %}
+        
       </div>
       <h3>Add new content:</h3>
       <ul class="content-types">
@@ -69,6 +67,19 @@
         <li><a href="{% url "courses:module_content_create" module.id "file" %}">
         File</a></li>
       </ul>
+    </div>
+    <div class="md:col-span-2 sm:col-span-8  p-3 border-gray-400 bg-gray text-white" style="background-color:#333">
+
+    <h2 class="mb-3 text-1xl">Announcements</h2>
+    <hr>
+    {% for a in announcements %}
+    <div class="mb-2 mt-1">
+    <p>{{a.content}}</p>
+    <p class="mb-2"> - {{ a.created }} </p>
+    <hr>
+    </div>
+    {% endfor %}
+    </div>
     </div>
   {% endwith %}
 {% endblock %}
