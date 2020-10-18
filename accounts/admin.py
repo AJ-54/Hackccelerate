@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 class CustomUserAdmin(UserAdmin):
 
     fieldsets = UserAdmin.fieldsets + (
-        ('Roles', {'fields': ('role',)}),
+        ('Roles', {'fields': ('role','is_approved')}),
     )
     add_fieldsets = UserAdmin.add_fieldsets + (
         ('Roles', {'fields': ('role',)}),

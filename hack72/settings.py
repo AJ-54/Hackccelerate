@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
+
 """
 
 import os
@@ -81,6 +82,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hack72.wsgi.application'
 
 
+ASGI_APPLICATION = 'hack72.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+
+        # the chat messages will stored in the redis server 
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+               #localhost,port
+        },
+    },
+}
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -131,42 +147,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static')
+]
+STATIC_ROOT =os.path.join(BASE_DIR,'assets')
+#MEDIA  FILES 
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT =os.path.join(BASE_DIR,'media')
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-
-from django.urls import reverse_lazy
-LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
-
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}
-
-CACHE_MIDDLEWARE_ALIAS = 'default'
-CACHE_MIDDLEWARE_SECONDS = 60 * 15  # 15 minutes
-CACHE_MIDDLEWARE_KEY_PREFIX = 'hack72'
-
-
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
-
-
-# Channels config
-
-ASGI_APPLICATION = 'hack72.routing.application'
-
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [('127.0.0.1', 6379)],
-        },
-    },
-}

@@ -36,7 +36,7 @@
           </div>
           <h2 class="text-lg text-gray-900 font-medium title-font mb-2">{{ course.title}}</h2>
           <p class="leading-relaxed text-base">{{course.overview}}</p>
-          <p> Number of Students Enrolled : {{course.student_courses|length}} </p>
+          <p> Number of Students Enrolled : {{course.student_courses.all|length}} </p>
           <p>
           <a class="text-green-500 inline-flex items-center" href="{% url "courses:new_announcement" course.id %}">Create Announcment<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
             <path d="M5 12h14M12 5l7 7-7 7"></path>

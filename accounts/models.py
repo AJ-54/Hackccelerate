@@ -16,8 +16,8 @@ class User(AbstractUser) :
         STUDENT = "S" ,_("Student")
         PARENT = "P" ,_("Parent")
         TEACHER = "T",_("Teacher")
-
     role = models.CharField(max_length = 255,choices=Role.choices)
+    is_approved= models.BooleanField(default=False)
 
 class Teacher(models.Model) :
     user = models.OneToOneField(settings.AUTH_USER_MODEL,null=True,on_delete=models.CASCADE, related_name="teacher")

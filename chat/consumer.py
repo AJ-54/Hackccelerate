@@ -69,7 +69,16 @@ class ChatConsumer(WebsocketConsumer):
         # print(data['message'])
 
         return self.send_chat_message(content)
-        
+
+
+    def send_media(self,data) :
+        user = User.objects.get(username=data['from'])
+        content = {
+                "command":media ,
+                "type" :data['type'],
+                 "url" : data["url"]
+                }
+        self.send_chat_message(content)
 
 
     def messages_to_json(self,messages,id) :
@@ -92,7 +101,8 @@ class ChatConsumer(WebsocketConsumer):
             'fetch_messages': fetch_messages,
             'new_message'  : new_messages,
           #  'online':online,
-            'typing':typing
+            'typing':typing,
+            'media':send_media
          }
 
     def connect(self):
