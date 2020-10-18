@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accounts', '0001_initial'),
-#         ('auth', '0013_auto_20201017_1025'),
+        ('auth', '0013_auto_20201017_1025'),
         ('courses', '0001_initial'),
     ]
 
