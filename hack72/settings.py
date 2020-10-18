@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'chat',
     'channels',
     'accounts',
+    'parent',
     
 ]
 
@@ -87,6 +88,7 @@ CHANNEL_LAYERS = {
     'default': {
 
         # the chat messages will stored in the redis server 
+
 #         'BACKEND': 'channels_redis.core.RedisChannelLayer',
 #         'CONFIG': {
 #             "hosts": [('127.0.0.1', 6379)],

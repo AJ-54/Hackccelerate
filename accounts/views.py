@@ -28,7 +28,7 @@ def user_login(request) :
             elif role=="T" :
                 return redirect('courses:manage_course_list')
             elif role =="P" :
-                return redirect('') 
+                return redirect('parents:parent_index') 
             else :
                 messages.error(request,"Invalid credentials")
                 return render(request,"accounts/login.html")        

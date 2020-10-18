@@ -16,7 +16,9 @@
       {% for course in object_list %}
         <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200">
           <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">{{course.title}}</h2>
-          <p class="leading-relaxed text-base mb-4">{{course.overview}}</p>
+          <p class="leading-relaxed text-base mb-2">{{course.overview}}</p>
+          <p class="leading-relaxed text-base mb-2">Subject : {{course.subject.title}}</p>
+          <p class="leading-relaxed text-base mb-2">Teacher {{course.owner.username}}</p>
           <a class="text-green-500 inline-flex items-center" href="{% url "students:student_course_detail" course.id %}">Continue Studying
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
