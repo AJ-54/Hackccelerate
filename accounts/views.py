@@ -28,7 +28,7 @@ def user_login(request) :
             elif role=="T" :
                 return redirect('courses:manage_course_list')
             elif role =="P" :
-                return redirect('') 
+                return redirect('parents:parent_index') 
             else :
                 messages.error(request,"Invalid credentials")
                 return render(request,"accounts/login.html")        
@@ -163,7 +163,9 @@ def register_parent(request) :
         user = User.objects.create(first_name=first_name,last_name=last_name,email=email,role="P",username=username)
         user.set_password(password)
         user.save() 
-        user.parent.children.add(User.objects.get(username="".join(list(parent_of.split(" ")))).student)
+        child_list = list(parent_of.split(','))
+        for c in child_list :
+             user.parent.children.add(User.objects.get(username=c).student)
 
         return redirect("accounts:login")
 

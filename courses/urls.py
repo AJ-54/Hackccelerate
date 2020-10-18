@@ -56,5 +56,5 @@ urlpatterns = [
      
      path('<pk>/create_announcement/',
          views.AnnouncementCreateView.as_view(),
-         name='new_announcement'),
+         name='new_announcement'), 
 ]

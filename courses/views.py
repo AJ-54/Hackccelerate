@@ -14,7 +14,7 @@ from django.db.models import Count
 from django.core.cache import cache
 from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 from students.forms import CourseEnrollForm
-from .models import Course, Module, Content, Subject, Announcement
+from .models import Course, Module, Content, Subject, Announcement, Discussion
 from .forms import ModuleFormSet
 
 def home_view(request):
@@ -235,4 +235,23 @@ class CourseDetailView(DetailView):
                                    initial={'course':self.object})
         context['announcements'] = self.object.announcements.all()
         return context
+
+
+
+class DiscussionPage(LoginRequiredMixin,View) :
+    
+
+    def get(self,request,**kwargs) :
+       uploads = Discussion.objects.all()
+       return render(request,'discussion.html',{'uploads':uploads})
+
+    def post(self,request,**kwargs) :
+        file = request.FILES['file']
+        title =request.POST['title'] 
+        description = request.POST['description']
+        upload = Discussion.objects.create(file=file,title=title,user=request.user, content=description)
+
+        return redirect('discussion_page')
+
+
 

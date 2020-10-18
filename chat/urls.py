@@ -20,6 +20,6 @@ from django.conf.urls.static import static
 from .views import chat
 app_name ="chat"
 urlpatterns = [
-        path('<str:chat_id>',chat,name="chat_room" ),
+        path('<str:chat_id>',chat,name="course_chat_room" ),
 ]
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Subject, Course, Module, Content, Text, File, Image, Video, Announcement
+from .models import Subject, Course, Module, Content, Text, File, Image, Video, Announcement, Discussion
 from django.contrib import admin
 
 # use memcache admin index site
@@ -11,6 +11,7 @@ admin.site.register(File)
 admin.site.register(Image)
 admin.site.register(Video)
 admin.site.register(Announcement)
+admin.site.register(Discussion)
 
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):

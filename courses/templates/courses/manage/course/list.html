@@ -11,7 +11,7 @@
         <a class="text-gray-800" href="{% url "courses:course_create" %}"> Create new course</a>
     </span>
   </div>
-  </div> {% endcomment %}
+  </div>  {% endcomment %}
   
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full">
@@ -62,10 +62,12 @@
         </div>
       </div>
     </div> 
+      <a href="{% url "courses:course_create" %}"> <button class="flex mx-auto mt-16 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">Create New Course</button></a>
 
      
     {% empty %}
       <p>You haven't created any courses yet.</p>
+      <a class="text-gray-800" href="{% url "courses:course_create" %}"> Create new course</a>
     {% endfor %}
   
   </div>

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'chat',
     'channels',
     'accounts',
+    'parent',
     
 ]
 
@@ -87,15 +88,11 @@ CHANNEL_LAYERS = {
     'default': {
 
         # the chat messages will stored in the redis server 
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-               #localhost,port
-        },
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
     },
 }
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
+# REDIS_HOST = 'localhost'
+# REDIS_PORT = 6379
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
