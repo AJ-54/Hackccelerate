@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
-from django.dispatch import receiver 
+from django.dispatch import receiver
 #from django.http import HttpResponseBadRequest
 from django.db.models.signals import post_save
     
@@ -48,7 +48,7 @@ class Student(models.Model) :
     standard = models.IntegerField(default =1)
     is_fees_paid = models.BooleanField(default = False)
     date_of_joining = models.DateField(default =timezone.now)
-    courses = models.ManyToManyField('courses.Course',related_name="student_courses", null=True)
+    courses = models.ManyToManyField('courses.Course',related_name="student_courses",through="StudentToCourses", null=True)
 
     @property
     def fees(self) :
@@ -56,6 +56,21 @@ class Student(models.Model) :
     
     def __str__(self):
         return self.user.username
+
+
+
+class StudentToCourses(models.Model) :
+    class Grade(models.TextChoices) :
+        A = "A" ,_("A")
+        B = "B" ,_("B")
+        C = "C",_("C")
+        D = "D",_("D")
+        E = "E",_("E")
+    grade = models.CharField(max_length = 255,choices=Grade.choices, null=True, blank=True)
+    attendance = models.IntegerField(null=True)
+    student = models.ForeignKey(Student,related_name="reports",null=True,on_delete=models.CASCADE)
+    course = models.ForeignKey('courses.Course',related_name="report_cards",null=True,on_delete=models.CASCADE)
+    
 
 
 
@@ -73,5 +88,7 @@ def generate_profile(sender,instance,created,**kwargs) :
         elif role=="P" :
                 Parent.objects.create(user=instance)
     
+
+
 
 

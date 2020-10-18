@@ -12,6 +12,7 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(User,CustomUserAdmin)
 admin.site.register(Student)
+admin.site.register(StudentToCourses)
 admin.site.register(Parent)
 admin.site.register(Teacher)
 # Register your models here.

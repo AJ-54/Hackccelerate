@@ -2,12 +2,12 @@ from django.db import models
 from django.conf import settings
 from courses.models import Course
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save,m2m_changed
+from accounts.models import Student
+from courses.models import Course
 
 User = settings.AUTH_USER_MODEL
 # Create your models here.
-
-
 
 class Message(models.Model) :
     user    = models.ForeignKey(User,related_name="messages",on_delete=models.CASCADE)
@@ -32,7 +32,7 @@ class Chat(models.Model) :
 
 
     def last_10_messages(self) :
-        return self.messages.objects.all().order_by('-timestamp')[:10]
+        return self.messages.objects.all().order_by('timestamp')[:10]
 
 
 
@@ -43,4 +43,6 @@ def create_chat(sender,instance,created,**kwargs) :
         chat =Chat.objects.create(course=instance) 
         chat.participants.set(instance.student_courses.all())
         chat.save()
+    
+
 

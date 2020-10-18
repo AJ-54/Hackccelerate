@@ -28,6 +28,8 @@ def enroll_course(request,pk) :
     
         course = Course.objects.get(pk=pk)
         course.student_courses.add(request.user.student)
+        chat = course.general_chat
+        chat.participants.add(request.user)
 
         return redirect('students:student_course_detail',
                                 pk=course.id)
@@ -37,13 +39,18 @@ def enroll_course(request,pk) :
     
 
 
-class CourseListView(LoginRequiredMixin, ListView):
+class CourseListView(ListView):
     model = Course
     template_name = 'students/course/all_courses.html'
 
     def get_queryset(self):
         qs = super().get_queryset()
-        return qs.exclude(student_courses__in=[self.request.user.student])
+        if not self.request.user.is_authenticated:
+            return qs
+        if self.request.user.role == 'S':
+            return qs.exclude(student_courses__in=[self.request.user.student])
+        else:
+            return qs
 
 
 class StudentCourseListView(LoginRequiredMixin, ListView):
