@@ -206,9 +206,13 @@
 				var divTag = document.createElement('div') ;
 				var divTag1 = document.createElement('div') ;
 				var divTag2 = document.createElement('div') ;
+				var h3 = document.createElement('h3')
+				var p = document.createElement('p')
 				imgTag.className="rounded-circle user_img_msg" ;
-				
-				divTag2.textContent = message['content'] ;
+				h3.textContent = username
+				p.textContent = message['content'] ;
+				divTag2.appendChild(h3)
+				divTag2.appendChild(p)
 				console.log(message)
 				
 				//divTag2.textContent=message['content'] ;
