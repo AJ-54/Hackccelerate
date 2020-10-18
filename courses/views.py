@@ -161,7 +161,7 @@ class ModuleContentListView(TemplateResponseMixin, View):
                                    id=module_id,
                                    course__owner=request.user)
 
-        return self.render_to_response({'module': module})
+        return self.render_to_response({'module': module,'announcements':module.course.announcements.all()})
 
 
 class ModuleOrderView(CsrfExemptMixin,
@@ -233,6 +233,6 @@ class CourseDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['enroll_form'] = CourseEnrollForm(
                                    initial={'course':self.object})
-        context['announcements'] = self.object.announcments.all()
+        context['announcements'] = self.object.announcements.all()
         return context
 

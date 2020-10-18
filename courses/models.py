@@ -34,7 +34,7 @@ class Course(models.Model):
 
 
 class Announcement(models.Model):
-    course = models.ForeignKey(Course,related_name="announcments",on_delete=models.CASCADE)
+    course = models.ForeignKey(Course,related_name="announcements",on_delete=models.CASCADE)
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 
