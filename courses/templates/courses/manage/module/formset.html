@@ -19,6 +19,16 @@
   
 </div> {% endcomment %}
  <div class="mt-5">
+ <div class="block ml-4 ">
+       <a href = "{% url "courses:manage_course_list"%}"> <button class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">  Go back
+      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7"></path>
+      </svg>
+       
+      
+    </button>
+    </a>
+    </div>
     <form method="post">
     <section class="text-gray-700 body-font">
   <div class="container px-5 py-24 mx-auto">
@@ -63,23 +73,15 @@
       </div>
       
       {% endfor %}
+      <button type="submit" value="Save modules" class="mb-3 bg-green-400 hover:bg-blue-700 text-white font-bold py-2 px-5 border border-blue-700 rounded mt-5">Save Modules</button>
+      
       </div>
 </section>
       {% comment %} <table>
       {{ formset }}
       </table> {% endcomment %}
       {% csrf_token %}
-      <button type="submit" value="Save modules" class="mb-3 bg-green-400 hover:bg-blue-700 text-white font-bold py-2 px-5 border border-blue-700 rounded mt-5">Save Modules</button>
-      <div class="block ">
-       <a href = "{% url "courses:manage_course_list"%}"> <button class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">  Go back
-      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-        <path d="M5 12h14M12 5l7 7-7 7"></path>
-      </svg>
-       
       
-    </button>
-    </a>
-    </div>
        
     </form>
    
