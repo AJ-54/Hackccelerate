@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import render,redirect, get_object_or_404
 from django.views.generic.base import TemplateResponseMixin, View
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, \
@@ -15,6 +15,9 @@ from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 from students.forms import CourseEnrollForm
 from .models import Course, Module, Content, Subject, Announcement
 from .forms import ModuleFormSet
+
+def home_view(request):
+    return render(request,'index.html')
 
 
 class OwnerMixin(object):
