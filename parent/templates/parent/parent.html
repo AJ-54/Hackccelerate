@@ -51,6 +51,7 @@
             <ul class="list-group list-group-flush scroll">
             {% for a in announcements %}
               <li class="list-group-item">
+              <p><b>Course: {{a.course.title}}</b></p>
               <p> {{a.content}}</p>
               <p> {{a.created}}</p>
               </li>
@@ -86,7 +87,7 @@
               Upcoming Holidays
             </div>
             <ul class="list-group list-group-flush scroll">
-              {% for a in events %}
+              {% for a in holidays %}
               <li class="list-group-item">
               <p> {{a.title}}</p>
               <p> {{a.date}}</p>

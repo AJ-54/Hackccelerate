@@ -101,7 +101,7 @@
                 + '/')
     
             const chatSocket = new ReconnectingWebSocket(
-                'ws://'
+                'wss://'
                 + window.location.host
                 + '/ws/chat/'
                 + roomName
@@ -181,7 +181,7 @@
 				var divTag1 = document.createElement('div') ;
 				var divTag2 = document.createElement('div') ;
 				imgTag.className="rounded-circle user_img_msg" ;
-				
+				var h3 = document.createElement('h3')
 				var p = document.createElement('p') ;
 				var h3= document.createElement('h6') ;
 				
