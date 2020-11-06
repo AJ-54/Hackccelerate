@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['learn-live.herokuapp.com','127.0.0.1','*']
 # Application definition
 
 INSTALLED_APPS = [
-    'courses.apps.CoursesConfig',
+   
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,14 +43,17 @@ INSTALLED_APPS = [
     'embed_video',
     'memcache_status',
     'rest_framework',
+    'accounts',
+    'courses.apps.CoursesConfig',
     'chat',
     'channels',
-    'accounts',
-    'parent',
+    'parent'
+    
     
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # 'django.middleware.cache.UpdateCacheMiddleware',
@@ -155,7 +158,7 @@ STATICFILES_DIRS=[
 ]
 STATIC_ROOT =os.path.join(BASE_DIR,'assets')
 #MEDIA  FILES 
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 MEDIA_URL = '/media/'
