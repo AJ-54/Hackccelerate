@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['learn-live.herokuapp.com','127.0.0.1','*']
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
      'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,13 +46,13 @@ INSTALLED_APPS = [
     'courses.apps.CoursesConfig',
     'chat',
     'students.apps.StudentsConfig',
-    'channels',
     'parent'
     
     
 ]
 
 MIDDLEWARE = [
+    
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'channels.middleware.BaseMiddleware',
 ]
 
 ROOT_URLCONF = 'hack72.urls'
@@ -85,7 +87,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hack72.wsgi.application'
 
 
-ASGI_APPLICATION = 'hack72.routing.application'
+ASGI_APPLICATION = 'hack72.asgi.application'
 CHANNEL_LAYERS = {
     'default': {
 
@@ -105,14 +107,21 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'USER' : 'ixawkcglorzdle',
+#         'NAME' :'d2u46gais0cheh',
+#         'HOST':'ec2-3-211-176-230.compute-1.amazonaws.com',
+#         'PASSWORD':'e2fbece5ed495e89f91beea73fba4990ccfd86da31e19aa33c7201cd5d627ce7',
+#         'PORT':'5432'
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER' : 'ixawkcglorzdle',
-        'NAME' :'d2u46gais0cheh',
-        'HOST':'ec2-3-211-176-230.compute-1.amazonaws.com',
-        'PASSWORD':'e2fbece5ed495e89f91beea73fba4990ccfd86da31e19aa33c7201cd5d627ce7',
-        'PORT':'5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 AUTH_USER_MODEL = 'accounts.User'
