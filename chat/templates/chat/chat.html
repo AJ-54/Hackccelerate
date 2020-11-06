@@ -94,14 +94,14 @@
       ;
 			
 			var username = {{ username }} ;
-			console.log('ws://'
+			console.log('wss://'
                 + window.location.host
                 + '/ws/chat/'
                 + roomName
                 + '/')
     
             const chatSocket = new ReconnectingWebSocket(
-                'ws://'
+                'wss://'
                 + window.location.host
                 + '/ws/chat/'
                 + roomName
