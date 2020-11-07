@@ -17,6 +17,7 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
     async def fetch_messages(self,data):
         print('fetching')
         messages=await database_sync_to_async(get_last_10_messages)(int(self.room_name))
+        
         message_json = await self.messages_to_json(messages,self.room_name)
         context ={
             'command': 'messages',
@@ -73,26 +74,43 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
         return await self.send_chat_message(content)
 
 
-    async def send_media(self,data) :
-        user = await database_sync_to_async(User.objects.get)(username=data['from'])
+    async def send_media(self,event) :
+        item = event["item"]
+
         content = {
-                "command":media ,
-                "type" :data['type'],
-                 "url" : data["url"]
-                }
-        await self.send_chat_message(content)
+            "url" : item["url"],
+            "media_type":item["media_type"],
+            "caption" : item["caption"],
+            "author" : item["user"],
+            "command" : "media"
+        }
+       
+                
+        await self.send_message(content)
 
     @database_sync_to_async
     def messages_to_json(self,messages,id) :
         result = []
         for  message in messages:
-            result.append({
-            'id':message.id,
-            'author':message.user.username,
-            'content':message.content,
-            'timestamp':str(message.timestamp),
-            'chatId':id
-        })
+            if message.content_type :
+                media_type = message.content_type.model
+                result.append({
+                'id':message.id,
+                'author':message.user.username,
+                'url':message.item.file.url,
+                'title':message.item.title,
+                'timestamp':str(message.timestamp),
+                'chatId':id,
+                 "media_type":media_type
+                })
+            else :
+                result.append({
+                'id':message.id,
+                'author':message.user.username,
+                'content' : message.content,
+                'timestamp':str(message.timestamp),
+                'chatId':id
+                })
         return result
     
     @database_sync_to_async
@@ -116,7 +134,7 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
     async def connect(self):
         print("connecting")
         self.room_name = self.scope['url_route']['kwargs']['room_name']
-        self.room_group_name = 'chat_%s' % self.room_name
+        self.room_group_name = 'chat_%s' % str(self.room_name)
 
         # Join room group
        
