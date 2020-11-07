@@ -65,20 +65,22 @@
 							
 						</div>
 						<div class="card-footer">
+						<div>
+						<form class="image_form" method ="POST" enctype = "multipart/form-data" id="image_form">
+								{% csrf_token %}
+								  <input  type="file" id="file" value="send image"  class="file_input" name="media_image">
+								  <input  type="button" id="chat_image_send" value="send image">
+									</input>
+								</form>
+							   </input>
+						</div>
 							<div class="input-group">
 								<div class="input-group-append" >
 									<span class="input-group-text attach_btn" ><i class="fas fa-paperclip"></i></span>
 								</div>
 								<textarea name="" class="form-control type_msg" placeholder="Type your message..." id="chat-message-input"></textarea>
 								<div class="input-group-append" >
-								<form class="image_form" method ="POST" enctype = "multipart/form-data" id="image_form">
-								{% csrf_token %}
 								
-								  <input  type="file" id="file" value="send image"  class="file_input" name="media_image">
-								  <input  type="button" id="chat_image_send" value="Send">
-										</input>
-								</form>
-							   </input>
                                     
 									<input  type="button" id="chat-message-submit" value="Send">
 										</input>
@@ -152,19 +154,25 @@
 				var divTag2 = document.createElement('div') ;
 				
 				if(message["media_type"]==="image"){
-                    var p = document.createElement('img') ;
-					p.style.width = "80%"
-					p.style.overflow = "hidden"
-					divTag2.style.width = "auto"
-					divTag2.style.textAlign = "center"
+                    var p = document.createElement('a') ;
+					p.href = message["url"] ;
+					p.target ="_blank"
+                    var a = document.createElement('img') ;
+					a.style.width = "90%"
+					a.style.overflow = "hidden"
+					divTag2.style.overflow="hidden"
+					divTag2.style.width="auto"
+					divTag2.style.textAlign = 'center'
+					a.src = url
 					divTag2.style.maxWidth = "70%"
+					p.appendChild(a)
 				}
 				var h3= document.createElement('h6') ;
 
 				
 				h3.textContent = author
 				h3.style.textAlign = "left"
-				p.src=url ;
+				
 				
 				divTag2.appendChild(h3)
 				divTag2.appendChild(p)
@@ -255,7 +263,7 @@
 				var divTag1 = document.createElement('div') ;
 				var divTag2 = document.createElement('div') ;
 				var h3 = document.createElement('h3')
-				var p = document.createElement('p')
+				
 				imgTag.className="rounded-circle user_img_msg" ;
 				
 
@@ -271,16 +279,20 @@
 					var p = document.createElement('p') ;
 				    p.textContent = message['content'] ;
 				}else{
-					var p = document.createElement('img') ;
+					var p = document.createElement('a') ;
+					p.href = message["url"] ;
+					p.target ="_blank"
+					
 					if(message["media_type"]==="image"){
-                    var p = document.createElement('img') ;
-					p.style.width = "90%"
-					p.style.overflow = "hidden"
+                    var a = document.createElement('img') ;
+					a.style.width = "90%"
+					a.style.overflow = "hidden"
 					divTag2.style.overflow="hidden"
 					divTag2.style.width="auto"
 					divTag2.style.textAlign = 'center'
-					p.src = message["url"]
+					a.src = message["url"]
 					divTag2.style.maxWidth = "70%"
+					p.appendChild(a)
 
 					}
 				}
