@@ -7,14 +7,16 @@ django.setup()
 
 
 
+
+
+
+
+
 from django.core.asgi import get_asgi_application
-from channels.routing import get_default_application
-
-
-
-
+from channels.routing import get_default_application,ProtocolTypeRouter,URLRouter
 from channels.auth import AuthMiddlewareStack
 import chat.routing
+
 
 
 
