@@ -1,8 +1,28 @@
 # Hackccelerate
 
-
 An Online education platfrom for schools 
+Live at https://learn-live.herokuapp.com/
 
+## Test User Credentials
+
+Login -> http://learn-live.herokuapp.com/accounts/login/
+
+### Student Login
+Username : student01
+Password : common101
+
+### Teacher Login
+Username : teacher01
+Password : common101
+
+### Parent Login
+Username : parent01
+Password : common101
+
+### Django SuperUser
+login -> http://learn-live.herokuapp.com/admin
+Username : ayush
+Password : a
 
 ## Installation
 ```bat
@@ -22,11 +42,9 @@ In settings.py change the "CHANNEL_LAYERS" configuration to your local redis ser
 python manage.py runserver
 ```
 
-### you can visit the deploy without any cachdb here
+Note 01: Once user register on portal, admin should login <here>[https://learn-live.herokuapp.com/admin/accounts/user/] and approve the account of that user. Only approved users can view our course content and participate in discussion forum.
 
-
-
-
+Note 02: All the Test Credentials are approved Users. So you can use them freely!
 
 ## Features 
 
@@ -101,6 +119,4 @@ chat with other studets in course chat room
 
 
 
-### parent
-<img src="ss/parent.png">
-<img src="ss/record.png">
+

@@ -81,9 +81,11 @@ class CourseModuleUpdateView(TemplateResponseMixin, View):
 
     def post(self, request, *args, **kwargs):
         formset = self.get_formset(data=request.POST)
+        print(formset)
         if formset.is_valid():
             formset.save()
             return redirect('courses:manage_course_list')
+        
         return self.render_to_response({'course': self.course,
                                         'formset': formset})
 
