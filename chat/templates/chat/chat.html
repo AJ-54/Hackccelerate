@@ -111,14 +111,14 @@
                 + roomName
                 + '/')
     
-            const chatSocket = new ReconnectingWebSocket(
+            
+			const chatSocket = new ReconnectingWebSocket(
                 'wss://'
                 + window.location.host
                 + '/ws/chat/'
                 + roomName
                 + '/'
 			);
-			
 
 			chatSocket.onopen = function(e){
 				fetchMessages() ;
@@ -202,7 +202,7 @@
 				
 				document.querySelector("#chat-log").appendChild(divTag) ;
 
-				}else if (data['message']["command"]==="new_message"){
+				}else if (data['message']["command"] === "new_message" ){
 				var message =data['message']['message'] ;
 				var author = message['author'] ;
 				var messagelisttag= document.createElement('li') ;
@@ -336,7 +336,7 @@
                     document.querySelector('#chat-message-submit').click();
                 }
             };
-    
+       
             document.querySelector('#chat-message-submit').onclick = function(e) {
 				console.log('onclick works') ;
                 const messageInputDom = document.querySelector('#chat-message-input');
