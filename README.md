@@ -50,44 +50,73 @@ Note 02: All the Test Credentials are approved Users. So you can use them freely
 
 ### Students
 
+Note : Once user register's his accounts ,admin needs to approve the account
+
 - login and register
-- enroll to available courses
+- enroll courses available
 - see all courses 
-- navigation to course where they can see different modules, contents of modules, announcments regarding the course.
-- Chat with other students enrolled in that course through course chat room
-- Participate in dicussion forum with other teachers/parents/students
+- navigation to course where they can see different modules,
+announcments regarding the course and contents of modules also 
+chat with other studets in course chat room
+- see the dicussion/posts posted by teachers/students
+
 
 
 ### Teachers
-- Login and register
-- Create multiple courses
-- Edit/create new modules in each course
-- Reorder modules whenever you feel necessary!
-- Post course content in any way. It can be text/image/video/audio/ppt/pdf/etc... 
-- Participate in dicussion forum with other teachers/parents/students
-- Create Announcements in each course separately (Course Specific)
+- login and register
+- create a course
+- edit /moules
+- reorder them on course page
+- post course content in text/video/file
+- create/view public uploads 
 
 
-### Parents
-- Login and register
-- See announcements regarding their children's courses that are made by teachers
-- Get list of all Events 
-- Get list of all Holiays
-- Check progress of each student in every course (grades,attendance) 
-- Participate in dicussion forum with other teachers/parents/students
-
-Note : Attendance and grades need to be registered by the admin once finalised.
+### Parentts
+-  login and register
+- See announcements regarding their children's courses
+- Events 
+- Holiays
+- see report cards of each child(Attendance is manual,so is the grade )
+- create/view public uploads 
 
 
-## Technology Used
-- Django 
-- Django Rest Framework
-- Django Channels
-- Tailblocks
-- Javascript
-- JQuery
-- Html
-- CSS
 
-We tried to follow the best coding principles while participating in this hackathon!
+
+## Gallery
+
+
+
+### home page
+<img src="ss/rename.png">
+<img src="ss/main_down.png">
+
+### signin
+<img src="ss/signup.png">
+
+### approval
+<img src="ss/approve.png">
+
+### student
+<img src="ss/student_courses.png">
+<img src="ss/chat.png">
+<img src="ss/all_courses.png">
+<img src="ss/discussion.png">
+
+
+### teacher
+<img src="ss/teacher-courses.png">
+<img src="ss/add_content.png">
+<img src="ss/teacher-courses-manage.png">
+<img src="ss/teacher-module-manage.png">
+<img src="ss/teacher-edit-course.png">
+<img src="ss/teacher-new-announcement.png">
+
+
+
+
+
+
+
+
+
 

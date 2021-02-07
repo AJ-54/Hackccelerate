@@ -9,7 +9,9 @@ from django.db.models.signals import post_save
 
 # Create your models here.
 from django.conf import settings 
+
 FEES = [1000*i for i in range(1,13)]
+
 
 class User(AbstractUser) :
     class Role(models.TextChoices) :
@@ -18,6 +20,7 @@ class User(AbstractUser) :
         TEACHER = "T",_("Teacher")
     role = models.CharField(max_length = 255,choices=Role.choices)
     is_approved= models.BooleanField(default=False)
+
 
 class Teacher(models.Model) :
     user = models.OneToOneField(settings.AUTH_USER_MODEL,null=True,on_delete=models.CASCADE, related_name="teacher")

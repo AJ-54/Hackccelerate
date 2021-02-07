@@ -1,2 +1,8 @@
+<<<<<<< HEAD
+final/
+__pychache__/*
+migrations/*
+=======
 __pycache__/
 migrations/
+>>>>>>> aa1ba97dc78f7fb567f92990656d9956b31a5d3d

@@ -5,6 +5,9 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save,m2m_changed
 from accounts.models import Student
 from courses.models import Course
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
+
 
 User = settings.AUTH_USER_MODEL
 # Create your models here.
@@ -13,6 +16,10 @@ class Message(models.Model) :
     user    = models.ForeignKey(User,related_name="messages",on_delete=models.CASCADE)
     timestamp  = models.DateTimeField(auto_now_add=True)
     content   =   models.TextField()
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True,blank=True,
+    limit_choices_to={'model__in':( 'video','image','file')})
+    object_id = models.PositiveIntegerField(blank=True,null=True)
+    item = GenericForeignKey('content_type', 'object_id')
     # read_by=models.ManyToManyField(Contact,related_name='messages_read')
 
     def __str__(self) :

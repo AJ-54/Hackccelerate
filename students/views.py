@@ -50,7 +50,7 @@ class CourseListView(ListView):
         if self.request.user.role == 'S':
             return qs.exclude(student_courses__in=[self.request.user.student])
         else:
-            return qs
+            return qs.exclude(owner= self.request.user)
 
 
 class StudentCourseListView(LoginRequiredMixin, ListView):

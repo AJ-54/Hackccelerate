@@ -66,13 +66,13 @@ class Content(models.Model):
 
 class ItemBase(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='%(class)s_related', on_delete=models.CASCADE)
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=250,blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     
     def __str__(self):
-        return self.title
+        return self.title+str(self.id)
 
     def render(self):
         return render_to_string(f'courses/content/{self._meta.model_name}.html',
